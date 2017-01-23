@@ -31,6 +31,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 	public FenetrePrincipale(CommBase comm){
 		
 		MenuFenetre menu = new MenuFenetre(comm);
+
 		this.setLayout(new BorderLayout());
 		this.add(menu, BorderLayout.NORTH); 
 		FenetreFormes fenetreFormes = new FenetreFormes();

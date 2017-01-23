@@ -11,7 +11,9 @@ Historique des modifications
 *******************************************************/  
 
 import java.beans.PropertyChangeListener;
-import javax.swing.SwingWorker;
+import java.io.*;
+import java.net.Socket;
+import javax.swing.*;
 
 /**
  * Base d'une communication via un fil d'exÃ©cution parallÃ¨le.
@@ -22,6 +24,9 @@ public class CommBase {
 	private SwingWorker threadComm =null;
 	private PropertyChangeListener listener = null;
 	private boolean isActif = false;
+	private Socket socketComm;
+	private BufferedReader inReader;
+	private BufferedWriter outWriter;
 	
 	/**
 	 * Constructeur
@@ -30,7 +35,7 @@ public class CommBase {
 	}
 	
 	/**
-	 * Définir le récepteur de l'information reçue dans la communication avec le serveur
+	 * Dï¿½finir le rï¿½cepteur de l'information reï¿½ue dans la communication avec le serveur
 	 * @param listener sera alertÃ© lors de l'appel de "firePropertyChanger" par le SwingWorker
 	 */
 	public void setPropertyChangeListener(PropertyChangeListener listener){
@@ -62,11 +67,28 @@ public class CommBase {
 			@Override
 			protected Object doInBackground() throws Exception {
 				System.out.println("Le fils d'execution parallele est lance");
+				// Emprunter
+				/*String adresse = JOptionPane.showInputDialog("Entrer l'adresse (IP:Port)");
+				if(adresse.contains(":")){
+					socketComm = new Socket(adresse.);
+				} */
+
+				Socket s = new Socket("localhost", 10000);
+				BufferedReader inReader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+				BufferedWriter outWriter = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+
 				while(true){
 					Thread.sleep(DELAI);
-					
 					// C'EST DANS CETTE BOUCLE QU'ON COMMUNIQUE AVEC LE SERVEUR
-					
+
+
+
+						outWriter.write("GET");
+						outWriter.newLine();
+						outWriter.flush();
+						String answer = inReader.readLine();
+						System.out.println(answer);
+
  					//La mÃ©thode suivante alerte l'observateur 
 					if(listener!=null)
 					   firePropertyChange("ENVOIE-TEST", null, (Object) "."); 
