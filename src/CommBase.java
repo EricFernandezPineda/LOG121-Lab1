@@ -45,8 +45,8 @@ public class CommBase {
 	/**
 	 * Démarre la communication
 	 */
-	public void start(){
-		creerCommunication();
+	public void start(String ip, String port){
+		creerCommunication(ip, port);
 	}
 	
 	/**
@@ -61,19 +61,16 @@ public class CommBase {
 	/**
 	 * Créer le nécessaire pour la communication avec le serveur
 	 */
-	protected void creerCommunication(){		
+	protected void creerCommunication(String ip, String port){
 		// Crée un fil d'exécusion parallèle au fil courant,
 		threadComm = new SwingWorker(){
 			@Override
 			protected Object doInBackground() throws Exception {
 				System.out.println("Le fils d'execution parallele est lance");
 				// Emprunter
-				/*String adresse = JOptionPane.showInputDialog("Entrer l'adresse (IP:Port)");
-				if(adresse.contains(":")){
-					socketComm = new Socket(adresse.);
-				} */
 
-				Socket s = new Socket("localhost", 10000);
+
+				Socket s = new Socket(ip, Integer.parseInt(port));
 				BufferedReader inReader = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				BufferedWriter outWriter = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
 

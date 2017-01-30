@@ -13,11 +13,7 @@ Historique des modifications
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 /**
  * Crée le menu de la fenêtre de l'applicationé
@@ -45,7 +41,8 @@ public class MenuFenetre extends JMenuBar{
 	private static final int DELAI_QUITTER_MSEC = 200;
  	   
 	CommBase comm; // Pour activer/désactiver la communication avec le serveur
-	
+	private String optionPaneStr;
+
 	/**
 	 * Constructeur
 	 */
@@ -65,8 +62,21 @@ public class MenuFenetre extends JMenuBar{
 		demarrerMenuItem = menu.getItem(0);
 		demarrerMenuItem.addActionListener(new ActionListener(){
 		  public void actionPerformed(ActionEvent arg0) {
-			comm.start();
-			rafraichirMenus();
+
+		  	optionPaneStr = JOptionPane.showInputDialog(getParent(),"Quel est le nom d'hôte et " +
+					"le port du serveur de formes ?");
+
+				if(optionPaneStr.equals("localhost:10000")){
+
+					comm.start(optionPaneStr.split(":")[0], optionPaneStr.split(":")[1]);
+					rafraichirMenus();
+				} else {
+					JOptionPane.showMessageDialog(getParent(),"ERREUR, veuillez écrire : localhost:10000");
+
+				}
+
+
+
 		  }
 		});
 		demarrerMenuItem.setAccelerator(KeyStroke.getKeyStroke(
