@@ -3,23 +3,34 @@
  */
 public class FactoryForme {
 
-    public Carre CreerCarree(Carre carre){
-        return new Carre();
+    private Forme forme;
+
+    public FactoryForme(Forme forme){
+
     }
 
-    public Rectangle CreerRectangle(Rectangle rectangle){
-        return new Rectangle();
+    public Forme CreerForme(String formeStr){
+
+        switch (formeStr){
+            case "CARRE" :
+                forme = new Carre();
+                break;
+            case "RECTANGLE" :
+                forme = new Rectangle();
+                break;
+            case "CERCLE" :
+                forme = new Cercle();
+                break;
+            case "OVALE" :
+                forme = new Ovale();
+                break;
+            case "LIGNE" :
+                forme = new Ligne();
+                break;
+        }
+
+        return forme;
     }
 
-    public Ovale CreerOvale(Ovale ovale){
-        return new Ovale();
-    }
 
-    public Cercle CreerCercle(Cercle cercle){
-        return new Cercle();
-    }
-
-    public Ligne CreerLigne(Ligne ligne){
-        return new Ligne();
-    }
 }

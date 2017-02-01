@@ -10,10 +10,13 @@ Historique des modifications
 2013-05-03 Version initiale
 *******************************************************/  
 
-import java.beans.PropertyChangeListener;
-import java.io.*;
-import java.net.Socket;
 import javax.swing.*;
+import java.beans.PropertyChangeListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 
 /**
  * Base d'une communication via un fil d'exécution parallèle.
@@ -25,8 +28,6 @@ public class CommBase {
 	private PropertyChangeListener listener = null;
 	private boolean isActif = false;
 	private Socket socketComm;
-	private BufferedReader inReader;
-	private BufferedWriter outWriter;
 	
 	/**
 	 * Constructeur
@@ -67,24 +68,27 @@ public class CommBase {
 			@Override
 			protected Object doInBackground() throws Exception {
 				System.out.println("Le fils d'execution parallele est lance");
-				// Emprunter
-
-
 				Socket s = new Socket(ip, Integer.parseInt(port));
 				BufferedReader inReader = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				BufferedWriter outWriter = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-
+				String[] str = new String[10];
+				int i = 0;
 				while(true){
 					Thread.sleep(DELAI);
 					// C'EST DANS CETTE BOUCLE QU'ON COMMUNIQUE AVEC LE SERVEUR
 
+					outWriter.write("GET");
+					outWriter.newLine();
+					outWriter.flush();
+					String answer = inReader.readLine();
+					if(!answer.contains("commande>")){
+						str[i] = answer;
 
 
-						outWriter.write("GET");
-						outWriter.newLine();
-						outWriter.flush();
-						String answer = inReader.readLine();
-						System.out.println(answer);
+						i++;
+					}
+					System.out.println(answer);
+
 
  					//La méthode suivante alerte l'observateur 
 					if(listener!=null)

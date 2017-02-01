@@ -10,10 +10,10 @@ Historique des modifications
 2013-05-03 Version initiale
 *******************************************************/  
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import javax.swing.*;
 
 /**
  * Crée le menu de la fenêtre de l'applicationé
@@ -65,17 +65,14 @@ public class MenuFenetre extends JMenuBar{
 
 		  	optionPaneStr = JOptionPane.showInputDialog(getParent(),"Quel est le nom d'hôte et " +
 					"le port du serveur de formes ?");
+		  	if(optionPaneStr.equals("localhost:10000") || optionPaneStr.equals("127.0.0.1:10000")){
 
-				if(optionPaneStr.equals("localhost:10000")){
+				comm.start(optionPaneStr.split(":")[0], optionPaneStr.split(":")[1]);
+				rafraichirMenus();
+			} else {
+				JOptionPane.showMessageDialog(getParent(),"ERREUR, veuillez écrire : localhost:10000");
 
-					comm.start(optionPaneStr.split(":")[0], optionPaneStr.split(":")[1]);
-					rafraichirMenus();
-				} else {
-					JOptionPane.showMessageDialog(getParent(),"ERREUR, veuillez écrire : localhost:10000");
-
-				}
-
-
+			}
 
 		  }
 		});
