@@ -28,6 +28,7 @@ public class CommBase {
 	private PropertyChangeListener listener = null;
 	private boolean isActif = false;
 	private Socket socketComm;
+	public String reponse;
 	
 	/**
 	 * Constructeur
@@ -71,7 +72,8 @@ public class CommBase {
 				Socket s = new Socket(ip, Integer.parseInt(port));
 				BufferedReader inReader = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				BufferedWriter outWriter = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-				String[] str = new String[10];
+
+
 				int i = 0;
 				while(true){
 					Thread.sleep(DELAI);
@@ -82,13 +84,8 @@ public class CommBase {
 					outWriter.flush();
 					String answer = inReader.readLine();
 					if(!answer.contains("commande>")){
-						str[i] = answer;
 
-
-						i++;
 					}
-					System.out.println(answer);
-
 
  					//La méthode suivante alerte l'observateur 
 					if(listener!=null)
@@ -102,7 +99,8 @@ public class CommBase {
 		threadComm.execute(); // Lance le fil d'exécution parallèle.
 		isActif = true;
 	}
-	
+
+	public String getStr(){ return reponse;}
 	/**
 	 * @return si le fil d'exécution parallèle est actif
 	 */

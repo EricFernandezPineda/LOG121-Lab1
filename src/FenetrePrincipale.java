@@ -34,7 +34,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 
 		this.setLayout(new BorderLayout());
 		this.add(menu, BorderLayout.NORTH); 
-		FenetreFormes fenetreFormes = new FenetreFormes();
+		FenetreFormes fenetreFormes = new FenetreFormes(comm);
 		this.add(fenetreFormes, BorderLayout.CENTER); // Ajoute la fenêtre de forme à la fenètre principale
 		this.pack(); // Ajuste la dimension de la fenêtre principale selon celle de ses composants
 		this.setVisible(true); // Rend la fenêtre principale visible.
@@ -44,7 +44,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 	// Appelé lorsque le sujet lance "firePropertyChanger"
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
-		
+
 		if(arg0.getPropertyName().equals("ENVOIE-TEST")){
 			System.out.print((String) arg0.getNewValue());
 		}

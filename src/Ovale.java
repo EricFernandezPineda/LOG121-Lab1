@@ -24,9 +24,9 @@ public class Ovale extends Forme{
      * @param x2
      * @param y2
      */
-    public Ovale(Color couleurRemp, Color couleurCont, int x1, int y1, int x2, int y2) {
+    public Ovale(Color couleurRemp, Color couleurCont, String nseq, int x1, int y1, int x2, int y2) {
 
-        super(couleurRemp, x1, y1, x2, y2);
+        super(couleurRemp, couleurCont, nseq, x1, y1, x2, y2);
 
     }
 
@@ -34,22 +34,19 @@ public class Ovale extends Forme{
 
     @Override
     public void Tracer(Graphics g) {
-        int x1 = getX1();
-        int x2 = getX2();
-        int y1 = getY1();
-        int y2 = getY2();
+        int cx = getX1();
+        int rh = getX2();
+        int cy = getY1();
+        int rv = getY2();
         Graphics2D g2d= (Graphics2D)g;
         g2d.setStroke(new BasicStroke(5.0f));
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-
         g.setColor(getCouleurRemp());
-        g.fillOval (Math.min(x1, x2),Math.min(y1, y2),
-                (Math.max(x1, x2) - Math.min(x1, x2)), (Math.max(y1, y2) - Math.min(y1, y2)));
+        g.fillOval (Math        .min(cx, rh),Math.min(cy, rv),
+                (Math.max(cx, rh) - Math.min(cx, rh)), (Math.max(cy, rv) - Math.min(cy, rv)));
         g.setColor(getCouleurCont());
-        g.drawOval(Math.min(x1, x2),Math.min(y1, y2),
-                (Math.max(x1, x2) - Math.min(x1, x2)), (Math.max(y1, y2) - Math.min(y1, y2)));
+        g.drawOval(Math.min(cx, rh),Math.min(cy, rv),
+                (Math.max(cx, rh) - Math.min(cx, rh)), (Math.max(cy, rv) - Math.min(cy, rv)));
 
 
 

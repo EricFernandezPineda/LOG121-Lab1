@@ -7,6 +7,7 @@ public abstract class Forme {
 
     private Color couleurRemp, couleurCont;
     private int x1, y1, x2, y2;
+    private String nseq;
 
     public Forme (){
 
@@ -14,11 +15,12 @@ public abstract class Forme {
     public Forme(int x1, int y1, int x2, int y2) {
     }
 
-    public Forme(Color couleurRemp, int x1, int y1,
+    public Forme(Color couleurRemp, Color couleurCont, String nseq, int x1, int y1,
                  int x2, int y2) {
 
         this.couleurRemp = couleurRemp;
         this.couleurCont = couleurCont;
+        this.nseq = nseq;
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -70,12 +72,6 @@ public abstract class Forme {
     }
 
     public void setY2(int y2) {
-        this.y2 = y2;
-    }
-
-
-    public void setDonnees(int x2, int y2) {
-        this.x2 = x2;
         this.y2 = y2;
     }
 

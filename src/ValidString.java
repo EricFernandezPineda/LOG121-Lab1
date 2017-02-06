@@ -5,26 +5,37 @@ import java.util.regex.Pattern;
  */
 public class ValidString {
 
-    Pattern regStr = Pattern.compile("(^\\d+)\\s<([A-Z]+)>\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d*)");
+    public static Pattern regStr = Pattern.compile("(^\\d+)\\s<([A-Z]+)>\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d*)");
 
     public String getSeq(String saisie){
-        regStr.matcher(saisie);
 
-        return saisie.split("\\s<.*")[0];
+        return regStr.matcher(saisie).group(1);
     }
 
-    public String getForme(String saisie){
+    public String getType(String saisie){
 
-
-        return saisie.split("\\s<.*")[0];
-
-    }
-    public String getCoordonnees(String saisie){
-
-
-        return saisie.split("\\s<.*")[0];
-
+        return regStr.matcher(saisie).group(2);
     }
 
+    public int getX1(String saisie) {
+
+        return Integer.parseInt(regStr.matcher(saisie).group(3));
+    }
+
+    public int getY1(String saisie) {
+
+        return Integer.parseInt(regStr.matcher(saisie).group(4));
+    }
+
+    public int getX2(String saisie) {
+
+        return Integer.parseInt(regStr.matcher(saisie).group(5));
+    }
+
+
+    public int getY2(String saisie) {
+
+        return Integer.parseInt(regStr.matcher(saisie).group(6));
+    }
 
 }

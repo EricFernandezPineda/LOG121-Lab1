@@ -12,6 +12,8 @@ Historique des modifications
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.File;
+import java.util.Queue;
 import javax.swing.JComponent;
 
 /**
@@ -22,27 +24,38 @@ import javax.swing.JComponent;
 public class FenetreFormes extends JComponent{
 	
 	private static final long serialVersionUID = -2262235643903749505L;
+	private FactoryForme ff;
+	private String cb;
+	private Queue<Forme> fileForme;
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	public static final Dimension dimension = new Dimension(500,500);
+	public CommBase c;
 		
 	/**
 	 * Constructeur
 	 */
-	public FenetreFormes(){
-		//... 
+	public FenetreFormes(CommBase comm){
+		c = comm;
 	}
-	
+
 	/*
 	 * Affiche la liste de formes 
 	 */
 	@Override 
 	public void paintComponent(Graphics g){
-		
-		// Testing...
-		g.drawOval(45, 45, 355, 355);
+
+		/*ff = new FactoryForme();
+		fileForme.add(ff.CreerForme(cb.reponse));
+		if(fileForme.size() == 10){
+			fileForme.remove();
+		}
+		repaint();*/
+		System.out.println(c.getStr());
+
 	}
-	
+
+
 	/*
 	 * Le Layout qui utilise (contient) FenetreFormes doit réserver 
 	 * l'espace nécessaire à son affichage

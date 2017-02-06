@@ -23,9 +23,9 @@ public class Carre extends Forme {
      * @param x2
      * @param y2
      */
-    public Carre(Color couleurRemp, Color couleurCont, int x1, int y1, int x2, int y2) {
+    public Carre(Color couleurRemp, Color couleurCont, String nseq, int x1, int y1, int x2, int y2) {
 
-        super(couleurRemp, x1, y1, x2, y2);
+        super(couleurRemp, couleurCont,nseq, x1, y1, x2, y2);
 
     }
 
@@ -40,14 +40,11 @@ public class Carre extends Forme {
         Graphics2D g2d= (Graphics2D)g;
         g2d.setStroke(new BasicStroke(5.0f));
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-
         g.setColor(getCouleurRemp());
-        g.fillOval (Math.min(x1, x2),Math.min(y1, y2),
+        g.fillRect (Math.min(x1, x2),Math.min(y1, y2),
                 (Math.max(x1, x2) - Math.min(x1, x2)), (Math.max(y1, y2) - Math.min(y1, y2)));
         g.setColor(getCouleurCont());
-        g.drawOval(Math.min(x1, x2),Math.min(y1, y2),
+        g.drawRect(Math.min(x1, x2),Math.min(y1, y2),
                 (Math.max(x1, x2) - Math.min(x1, x2)), (Math.max(y1, y2) - Math.min(y1, y2)));
 
 
