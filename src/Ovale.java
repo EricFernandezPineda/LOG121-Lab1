@@ -16,7 +16,7 @@ public class Ovale extends Forme{
     }
 
     /**
-     *
+     * Constructeur adapté aux données reçu du serveur.
      * @param couleurRemp
      * @param couleurCont
      * @param x1
@@ -31,7 +31,10 @@ public class Ovale extends Forme{
     }
 
 
-
+    /**
+     * Trace une ovale selon les données reçues
+     * @param g
+     */
     @Override
     public void Tracer(Graphics g) {
         int cx = getX1();

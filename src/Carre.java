@@ -15,7 +15,7 @@ public class Carre extends Forme {
     }
 
     /**
-     *
+     * Constructeur adapté aux données reçu du serveur.
      * @param couleurRemp
      * @param couleurCont
      * @param x1
@@ -30,7 +30,10 @@ public class Carre extends Forme {
     }
 
 
-
+    /**
+     * Trace un carré selon les données reçues
+     * @param g
+     */
     @Override
     public void Tracer(Graphics g) {
         int x1 = getX1();

@@ -7,6 +7,11 @@ public class FactoryForme {
 
     private Forme forme;
 
+    /**
+     * Reçoit le String avec les informations sur la Forme et retourne la Forme appropriée
+     * @param formeStr
+     * @return
+     */
     public Forme CreerForme(String formeStr){
 
         ValidString vs = new ValidString();

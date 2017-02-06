@@ -15,7 +15,7 @@ public class Cercle extends Forme  {
     }
 
     /**
-     *
+     * Constructeur adapté aux données reçu du serveur.
      * @param couleurRemp
      * @param couleurCont
      * @param x1
@@ -29,7 +29,10 @@ public class Cercle extends Forme  {
     }
 
 
-
+    /**
+     * Trace un cercle selon les données reçues
+     * @param g
+     */
     @Override
     public void Tracer(Graphics g) {
         int cx = getX1();

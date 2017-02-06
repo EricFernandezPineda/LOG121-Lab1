@@ -15,7 +15,7 @@ public class Rectangle extends Forme {
     }
 
     /**
-     *
+     *  Constructeur adapté aux données reçu du serveur.
      * @param couleurRemp
      * @param couleurCont
      * @param x1
@@ -30,7 +30,10 @@ public class Rectangle extends Forme {
     }
 
 
-
+    /**
+     * Trace un rectangle.
+     * @param g
+     */
     @Override
     public void Tracer(Graphics g) {
         int x1 = getX1();
